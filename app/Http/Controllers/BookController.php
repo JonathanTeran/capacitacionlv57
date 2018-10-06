@@ -41,7 +41,6 @@ class BookController extends Controller
       $book=new Book($request->only(['title','description','vpath','category_id','price']));
       $book->created_user=  auth()->user()->id;
       $book->updated_user=  auth()->user()->id;
-      $book->slug='libro'.uniqid();
       auth()->user()->books()->save($book);
         return redirect()->route('books.index');
     }

@@ -4,10 +4,12 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Cviebrock\EloquentSluggable\Sluggable;
 
 class Book extends Model
 {
-    use SoftDeletes;
+    use SoftDeletes, Sluggable;
+
 
     protected $fillable=['title','description','vpath'
                             ,'price','category_id','date_publish'];
@@ -18,4 +20,15 @@ class Book extends Model
     public function user(){
         return $this->belongsTo(User::class,'user_id');
     }
+
+    public function sluggable()
+    {
+        return [
+            'slug' => [
+                'source' => 'title'
+            ]
+        ];
+    }
+
+    
 }
