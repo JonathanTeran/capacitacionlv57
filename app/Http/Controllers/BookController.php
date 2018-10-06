@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 use App\Category;
 use App\Book;
 use Illuminate\Http\Request;
-
+use App\Http\Requests\BookRequest;
 class BookController extends Controller
 {
     /**
@@ -36,7 +36,7 @@ class BookController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(BookRequest $request)
     {
       $book=new Book($request->only(['title','description','vpath','category_id','price']));
       auth()->user()->books()->save($book);
@@ -76,7 +76,7 @@ class BookController extends Controller
      * @param  \App\Book  $book
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Book $book)
+    public function update(BookRequest $request, Book $book)
     {
         $book->fill($request->only(['title','description','vpath','category_id','price']));
         $book->save();

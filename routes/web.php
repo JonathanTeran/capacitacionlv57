@@ -24,6 +24,14 @@ Route::group(['prefix'=>'publicaciones',
     Route::resource('books','BookController');
 });
 
+
+Route::get('/imagen/{name}',function($name){
+    $fileContent = Storage::disk('public')
+                    ->get("PORTADAS/$name");
+
+    return Response::make($fileContent, '200');
+})->name('portadas');
+
 /*
 Route::get('test',function(){
     return "hola mundo";
