@@ -1,3 +1,7 @@
+
+
+<p align="center"><a href="https://bootsnipp.com/snippets/Gzorl">TEMPLATE</a></p>
+
 <p align="center"><img src="https://laravel.com/assets/img/components/logo-laravel.svg"></p>
 
 <p align="center">
