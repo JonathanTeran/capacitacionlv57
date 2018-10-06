@@ -6,7 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Cviebrock\EloquentSluggable\Sluggable;
 use App\Traits\AuditTrait;
-
+use Storage;
+use File;
 class Book extends Model
 {
     use SoftDeletes, Sluggable, AuditTrait;
@@ -36,4 +37,17 @@ class Book extends Model
     {
         return 'slug';
     }
+
+    public function setVpathAttribute($vpath)
+    {
+        if (!empty($vpath)) {
+            $name = uniqid() . '.' . $vpath->getClientOriginalExtension();
+            if (!empty($this->vpath)) {
+                Storage::disk('public')->delete('PORTADAS/'. $this->vpath);
+            }
+            $this->attributes['vpath'] = $name;
+            Storage::disk('public')->put('PORTADAS/' . $name, File::get($vpath));
+        }
+    }
+
 }

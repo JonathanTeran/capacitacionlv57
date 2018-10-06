@@ -23,9 +23,20 @@
                             <td>{{$book->description}}</td>
                             <td>{{$book->price}}</td>
                             <td>
+                            {!!Form::open([
+                                'route'=>['books.destroy',$book->slug],
+                                'method'=>'DELETE'
+                            ])!!}
                             <a href="{{route('books.edit',$book->slug)}}"
                                  class="btn btn-outline-info">
                                     <i class="fas fa-edit"></i></a>
+                                    
+                            <button type="submit" class="btn btn-outline-danger">
+                                <i class="fas fa-trash-alt"></i>
+                            </button>
+
+                            {!!Form::close()!!}
+                            
                             </td>
                         </tr>
                     @endforeach
