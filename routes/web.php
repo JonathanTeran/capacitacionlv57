@@ -18,3 +18,24 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::group(['prefix'=>'publicaciones',
+              'middleware'=>'auth'],function(){
+    Route::resource('books','BookController');
+});
+
+/*
+Route::get('test',function(){
+    return "hola mundo";
+});
+Route::get('test/{id}',function($id){
+    return "hola mundo $id";
+});
+Route::get('test/{id?}',function($id=0){
+    return "hola mundo $id";
+});
+
+Route::get('test/{id}',function($id=0){
+    return "hola mundo $id";
+})->where(['id'=>'[0-9]+'])->name('test');
+*/
