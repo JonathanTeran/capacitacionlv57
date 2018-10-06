@@ -31,4 +31,14 @@ class BookRequest extends FormRequest
             'price'=>'required|numeric'
         ];
     }
+
+    public function attributes(){
+        return [
+            'title'=>'titulo',
+            'description'=>'descripcion',
+            'vpath'=>'imagen de portada',
+            'category_id'=>'categoria',
+            'price'=>'precio'
+        ];
+    }
 }

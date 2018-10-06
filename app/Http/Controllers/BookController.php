@@ -5,6 +5,7 @@ use App\Category;
 use App\Book;
 use Illuminate\Http\Request;
 use App\Http\Requests\BookRequest;
+use DB;
 class BookController extends Controller
 {
     /**
@@ -12,10 +13,20 @@ class BookController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        return view('books.index')->with(['books'=>Book::paginate(5)]);
+        return view('books.index')
+            ->with([
+                'books'=>Book::when($request->filter!='',
+                            function($query)use(&$request){
+                                $query->where('title','LIKE',"%{$request->filter}%");
+                            })
+                            ->where('user_id','=',auth()->user()->id)
+                            ->paginate(),
+                'filter'=>$request->filter
+                ]);
     }
+
 
     /**
      * Show the form for creating a new resource.
@@ -38,9 +49,11 @@ class BookController extends Controller
      */
     public function store(BookRequest $request)
     {
-      $book=new Book($request->only(['title','description','vpath','category_id','price']));
+      $book=new Book($request->validated());
       auth()->user()->books()->save($book);
-        return redirect()->route('books.index');
+
+     session()->flash('msg','Proceso ejecutado correctamente');
+     return redirect()->route('books.index');
     }
 
     /**
@@ -78,8 +91,12 @@ class BookController extends Controller
      */
     public function update(BookRequest $request, Book $book)
     {
-        $book->fill($request->only(['title','description','vpath','category_id','price']));
-        $book->save();
+       DB::transaction(function() use($request,$book){
+         $book->fill($request->validated());
+         $book->save();
+       });
+        
+        session()->flash('msg','Proceso ejecutado correctamente');
         return redirect()->route('books.index');
     }
 
