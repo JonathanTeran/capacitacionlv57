@@ -62,7 +62,11 @@ class BookController extends Controller
      */
     public function edit(Book $book)
     {
-        //
+        return view('books.edit')
+        ->with([
+            'categories'=>Category::pluck('name','id')->toArray(),
+            'book'=>$book
+        ]);
     }
 
     /**
@@ -74,7 +78,9 @@ class BookController extends Controller
      */
     public function update(Request $request, Book $book)
     {
-        //
+        $book->fill($request->only(['title','description','vpath','category_id','price']));
+        $book->save();
+        return redirect()->route('books.index');
     }
 
     /**
