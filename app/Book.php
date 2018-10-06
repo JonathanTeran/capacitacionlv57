@@ -5,10 +5,11 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Cviebrock\EloquentSluggable\Sluggable;
+use App\Traits\AuditTrait;
 
 class Book extends Model
 {
-    use SoftDeletes, Sluggable;
+    use SoftDeletes, Sluggable, AuditTrait;
 
 
     protected $fillable=['title','description','vpath'
@@ -30,5 +31,5 @@ class Book extends Model
         ];
     }
 
-    
+
 }

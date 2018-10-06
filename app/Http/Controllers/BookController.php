@@ -39,8 +39,6 @@ class BookController extends Controller
     public function store(Request $request)
     {
       $book=new Book($request->only(['title','description','vpath','category_id','price']));
-      $book->created_user=  auth()->user()->id;
-      $book->updated_user=  auth()->user()->id;
       auth()->user()->books()->save($book);
         return redirect()->route('books.index');
     }
