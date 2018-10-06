@@ -89,8 +89,14 @@
                            {{ session('msg') }}
                     </div>
                     @endif    
-
-                @yield('content')
+            <div class="row">
+                <div class="col-lg-3">
+                        @include('partials.categorias')
+                </div>
+                <div class="col-lg-9">
+                        @yield('content')
+                </div>
+            </div>  
             </div>
         </main>
     </div>

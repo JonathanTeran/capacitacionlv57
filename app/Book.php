@@ -2,15 +2,17 @@
 
 namespace App;
 
+use Cog\Contracts\Love\Likeable\Models\Likeable as LikeableContract;
+use Cog\Laravel\Love\Likeable\Models\Traits\Likeable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Cviebrock\EloquentSluggable\Sluggable;
 use App\Traits\AuditTrait;
 use Storage;
 use File;
-class Book extends Model
+class Book extends Model implements LikeableContract
 {
-    use SoftDeletes, Sluggable, AuditTrait;
+    use SoftDeletes, Sluggable, AuditTrait,Likeable;
 
 
     protected $fillable=['title','description','vpath'
