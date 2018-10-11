@@ -7,6 +7,6 @@ use App\Category;
 class GuestController extends Controller
 {
    public function booksByCategory(Category $category){
-        dd($category);
+        return view('guest.categoryBook')->with(['category'=>$category]);
    }
 }
