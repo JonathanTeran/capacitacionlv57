@@ -111,4 +111,13 @@ class BookController extends Controller
         $book->delete();
         return redirect()->route('books.index');
     }
+
+    public function showComments(Book $book){
+        return view('books.comments',compact('book'));
+    }
+
+    public function like(Book $book){
+        $book->likeBy();
+        return redirect()->back();
+    }
 }

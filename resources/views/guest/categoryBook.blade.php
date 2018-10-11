@@ -17,7 +17,21 @@
                 <div class="card-body">
                 <h5 class="card-title">{{$book->title}}</h5>
                 <p class="card-text">{{$book->description}}</p>
-                    <a href="#" class="btn btn-primary">Go somewhere</a>
+                <span><i class="fas fa-clock"></i> 
+                        {{$book->created_at->diffForHumans()}}</span> 
+                       &nbsp;
+                <span><i class="fas fa-user"></i> 
+                            {{optional($book->user)->name}}</span>    
+                            <br/>
+                @auth
+                    <a href="{{route('books.comments',$book->slug)}}" class="btn btn-info btn-sm text-white">
+                        COMENTARIOS</a>
+
+                    <br/>
+                    <a href="{{route('books.like',$book->slug)}}" 
+                        class="btn btn-success btn-sm text-white">{{$book->likesCount}}  Me Gusta</a> &nbsp;
+<a class="btn btn-danger btn-sm text-white">No Me Gusta</a>
+                @endauth
                 </div>
             </div>
             </div>

@@ -34,6 +34,13 @@ Route::get('/imagen/{name}',function($name){
 
 require __DIR__.'/guest.php';
 
+Route::get('books-comments/{book}','BookController@showComments')
+->name('books.comments')->middleware('auth');
+
+Route::get('books-like/{book}','BookController@like')
+->name('books.like')->middleware('auth');
+
+
 /*
 Route::get('test',function(){
     return "hola mundo";
