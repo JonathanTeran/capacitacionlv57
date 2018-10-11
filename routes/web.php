@@ -32,6 +32,8 @@ Route::get('/imagen/{name}',function($name){
     return Response::make($fileContent, '200');
 })->name('portadas');
 
+require __DIR__.'/guest.php';
+
 /*
 Route::get('test',function(){
     return "hola mundo";
