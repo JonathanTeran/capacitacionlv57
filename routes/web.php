@@ -40,6 +40,16 @@ Route::get('books-comments/{book}','BookController@showComments')
 Route::get('books-like/{book}','BookController@like')
 ->name('books.like')->middleware('auth');
 
+Route::get('books-dislike/{book}','BookController@dislike')
+->name('books.dislike')->middleware('auth');
+
+Route::post('category-suscription/{id}',
+'SuscriptionController@suscription')
+->middleware('auth')->where(['id'=>'[0-9]+']);
+
+Route::post('category-unsuscription/{id}',
+'SuscriptionController@unsuscription')
+->middleware('auth')->where(['id'=>'[0-9]+']);
 
 /*
 Route::get('test',function(){

@@ -18,4 +18,11 @@ class Category extends Model
     {
         return 'slug';
     }
+
+    public function suscriptions(){
+        return $this->hasMany(
+            CategorySuscription::class,
+            'category_id'
+        );
+    }
 }

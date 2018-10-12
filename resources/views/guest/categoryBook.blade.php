@@ -29,8 +29,13 @@
 
                     <br/>
                     <a href="{{route('books.like',$book->slug)}}" 
-                        class="btn btn-success btn-sm text-white">{{$book->likesCount}}  Me Gusta</a> &nbsp;
-<a class="btn btn-danger btn-sm text-white">No Me Gusta</a>
+                        class="btn btn-sm">{{$book->likesCount}}  
+                        <i class="fas fa-thumbs-up"></i></a> &nbsp;
+
+                    <a class="btn btn-sm"  
+                        href="{{route('books.dislike',$book->slug)}}" >
+                        {{$book->dislikesCount}}  
+                        <i class="fas fa-thumbs-down"></i></a>
                 @endauth
                 </div>
             </div>

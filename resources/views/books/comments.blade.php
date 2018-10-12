@@ -6,4 +6,6 @@
                      {{$book->title}}
         </h2>
         <hr/>
+
+        <div id="disqus_thread"></div>
 @endsection

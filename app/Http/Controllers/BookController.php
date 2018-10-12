@@ -120,4 +120,9 @@ class BookController extends Controller
         $book->likeBy();
         return redirect()->back();
     }
+
+    public function dislike(Book $book){
+        $book->dislikeBy();
+        return redirect()->back();
+    }
 }
