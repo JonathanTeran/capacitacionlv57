@@ -1,0 +1,41 @@
+<html>
+    <head>
+        <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js"></script>
+    </head>
+    <body>
+        <main>
+           <button @click="loadData()">CARGAR</button>
+
+           <ol v-if="post">
+               <li v-for="(obj,idx) in post">
+                    {{obj.title}}
+               </li>
+           </ol>
+           <span v-else>ESPERANDO QUE DES CLICK</span>
+            {{ $data }}
+        </main>
+    </body>
+    <script type="text/javascript">
+    function alerta(){
+        alert(11);
+    }
+        new Vue(
+            {
+                el:'main',
+                data:{
+                  post:null
+                },
+                methods:{
+                    loadData(){
+                      alerta();
+                            axios.get("https://jsonplaceholder.typicode.com/posts")
+                            .then((respuesta)=>{
+                                this.post=respuesta.data;
+                            });
+                    }
+                }
+            }
+        );
+    </script>
+</html>

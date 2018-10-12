@@ -23,4 +23,18 @@ class SuscriptionController extends Controller
         ]);
         $category->suscriptions()->save($suscription);
     }
+
+    public function unsuscription($id){
+        $category=Category::findOrFail($id);
+        
+        $suscription=CategorySuscription::where('user_id','=',
+                            auth()->user()->id)
+                            ->where('category_id','=',$category->id)
+                            ->first();
+        if($suscription!=null){
+            $suscription->delete();
+        }
+        return response()->json('proceso ok');
+    }
+
 }

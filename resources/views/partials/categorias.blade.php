@@ -8,6 +8,9 @@
       <span class="badge badge-primary badge-pill">
         {{$item->books()->count()}}
       </span>
+      @auth
+    <suscripciones :suscrito='@if($item->suscribe!=null) 0 @else 1 @endif' :categoria='{{$item->id}}'></suscripciones>   
+      @endauth
     </li>
   @empty
     No Hay Categorias

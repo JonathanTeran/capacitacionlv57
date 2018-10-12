@@ -1,0 +1,25 @@
+<html>
+    <head>
+        <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    </head>
+    <body>
+        <main>
+            <h2>{{ texto }}</h2>
+            <input type="text" v-model='texto'/>
+            <input type="text" v-model='proceso'/>
+
+            {{ $data }}
+        </main>
+    </body>
+    <script type="text/javascript">
+        new Vue(
+            {
+                el:'main',
+                data:{
+                    texto: "hola mundo",
+                    proceso:""
+                }
+            }
+        );
+    </script>
+</html>
