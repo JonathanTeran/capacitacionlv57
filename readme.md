@@ -10,7 +10,9 @@ MAIL_FROM_ADDRESS=ernesto.liberiov@ug.edu.ec
 MAIL_FROM_NAME=ernesto.liberiov@ug.edu.ec
 MAIL_SSLOPTIONS_ALLOW_SELF_SIGNED=true
 MAIL_SSLOPTIONS_VERIFY_PEER=false
-MAIL_SSLOPTIONS_VERIFY_PEER_NAME=false'stream' => [
+MAIL_SSLOPTIONS_VERIFY_PEER_NAME=false
+
+'stream' => [
         'ssl' => [
         'allow_self_signed' => env('MAIL_SSLOPTIONS_ALLOW_SELF_SIGNED', false),
         'verify_peer' => env('MAIL_SSLOPTIONS_VERIFY_PEER', true),
