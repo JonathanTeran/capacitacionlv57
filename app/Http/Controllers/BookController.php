@@ -49,8 +49,14 @@ class BookController extends Controller
      */
     public function store(BookRequest $request)
     {
-      $book=new Book($request->validated());
-      auth()->user()->books()->save($book);
+        DB::transaction(function() use($request){
+            $book=new Book($request->validated());
+            auth()->user()->books()->save($book);
+            $category=Category::find($request->category_id);
+            
+            getUser()->notify(new \App\Notifications\BookCategoryPush($category->name,
+            route('category.book',$category->slug)));
+        });
 
      session()->flash('msg','Proceso ejecutado correctamente');
      return redirect()->route('books.index');

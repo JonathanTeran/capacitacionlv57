@@ -9,7 +9,7 @@
         {{$item->books()->count()}}
       </span>
       @auth
-    <suscripciones :suscrito='@if($item->suscribe!=null) 0 @else 1 @endif' :categoria='{{$item->id}}'></suscripciones>   
+    <suscripciones :suscrito='@if($item->suscribe!=null) 1 @else 0 @endif' :categoria='{{$item->id}}'></suscripciones>   
       @endauth
     </li>
   @empty

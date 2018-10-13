@@ -29,8 +29,8 @@ class BookProvider extends ServiceProvider
     public function registerViewComposer(){
         view()->composer('*',function($view){
                 $view->with([
-                    'allCategories'=>Category::all()
-                            ]);
+                    'allCategories'=>getCategoryAndSuscription()
+                ]);
         });
     }
 }
